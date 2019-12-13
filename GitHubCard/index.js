@@ -2,11 +2,14 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+const cardFromIndex = document.querySelector('.cards');
+
 axios 
 .get("https://api.github.com/users/DaniWinston25")
 .then((res)=>{
 const user = res.data
-githubData(user)
+const newCard = githubData(user);
+cardFromIndex.appendChild(newCard);
 })
   .catch((err)=> console.log(err));
 
