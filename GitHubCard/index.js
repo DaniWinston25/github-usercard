@@ -65,6 +65,9 @@ cardInfo.classList.add('cardInfo');
 name.classList.add('name');
 username.classList.add('username');
 
+cardImg.src = obj.avatar_url;
+cardImg.alt = 'github user';
+
 //creating text content//
 
 }
