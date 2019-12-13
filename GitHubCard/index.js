@@ -16,11 +16,12 @@ console.log(res.data);
 
    Skip to Step 3.
 */
-
+const githubData = res.data
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
-
+const mainCards = document.createElement('.cards')
+mainCards.appendChild(githubData);
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
           , manually find some other users' github handles, or use the list found 
