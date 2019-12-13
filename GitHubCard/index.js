@@ -2,11 +2,13 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-// axios 
-// .get("https://api.github.com/users/DaniWinston25")
-// .then((res)=>{
-// console.log(res.data);
-// })
+axios 
+.get("https://api.github.com/users/DaniWinston25")
+.then((res)=>{
+const user = res.data
+githubData(user)
+})
+  .catch((err)=> console.log(err));
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -14,7 +16,7 @@
 
    Skip to Step 3.
 */
-const githubData = res.data
+
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
@@ -32,7 +34,7 @@ const githubData = res.data
 const followersArray = [];
 
 
-function githubDataInfo(obj){
+function githubData(obj){
 
   //creating elements//
 const card = document.createElement('div');
@@ -79,6 +81,7 @@ followers.textContent = `Followers: ${obj.followers}`;
 following.textContent = `Following: ${obj.following}`;
 bio.textContent = `Bio: ${obj.bio}`;
 
+return card;
 }
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
