@@ -65,10 +65,19 @@ cardInfo.classList.add('cardInfo');
 name.classList.add('name');
 username.classList.add('username');
 
+//creating text content//
 cardImg.src = obj.avatar_url;
 cardImg.alt = 'github user';
-
-//creating text content//
+name.textContent = obj.name;
+username.textContent = obj.login;
+location.textContent = obj.location;
+profile.textContent = 'Profile:'
+profileLink.href = obj.html_url;
+profileLink.texyContent = obj.html_url;
+profileLink.style.color = 'pointer';
+followers.textContent = `Followers: ${obj.followers}`;
+following.textContent = `Following: ${obj.following}`;
+bio.textContent = `Bio: ${obj.bio}`;
 
 }
 /* Step 3: Create a function that accepts a single object as its only argument,
