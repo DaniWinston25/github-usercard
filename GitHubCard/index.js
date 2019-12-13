@@ -3,6 +3,7 @@
            https://api.github.com/users/<your name>
 */
 const cardFromIndex = document.querySelector('.cards');
+const followersArray = [ "tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"];
 
 axios 
 .get("https://api.github.com/users/DaniWinston25")
@@ -13,6 +14,16 @@ cardFromIndex.appendChild(newCard);
 })
   .catch((err)=> console.log(err));
 
+  followersArray.forEach((user)=>{
+    axios.get(`https://api.github.com/users/${user}`)
+    .then(res => {
+      const data = res.data;
+      const newCard = githubData(data);
+      cardFromIndex.appendChild(newCard)
+    })
+    .catch((err)=>{console.log(err)});
+  })
+  
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -34,7 +45,6 @@ cardFromIndex.appendChild(newCard);
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
 
 
 function githubData(obj){
@@ -52,18 +62,6 @@ const followers = document.createElement('p');
 const following= document.createElement('p');
 const bio = document.createElement('p');
 
-///appending the children to their parents//
-  card.appendChild(cardImg);
-  card.appendChild(cardInfo);
-  cardInfo.appendChild(name);
-  cardInfo.appendChild(username);
-  cardInfo.appendChild(location);
-  cardInfo.appendChild(profile);
-  profile.appendChild(profileLink);
-  cardInfo.appendChild(followers);
-  cardInfo.appendChild(following);
-  cardInfo.appendChild(bio);
-
   //creating classes//
 card.classList.add('card');
 cardInfo.classList.add('cardInfo');
@@ -79,10 +77,21 @@ location.textContent = obj.location;
 profile.textContent = 'Profile:'
 profileLink.href = obj.html_url;
 profileLink.texyContent = obj.html_url;
-profileLink.style.color = 'pointer';
 followers.textContent = `Followers: ${obj.followers}`;
 following.textContent = `Following: ${obj.following}`;
 bio.textContent = `Bio: ${obj.bio}`;
+
+///appending the children to their parents//
+card.appendChild(cardImg);
+card.appendChild(cardInfo);
+cardInfo.appendChild(name);
+cardInfo.appendChild(username);
+cardInfo.appendChild(location);
+cardInfo.appendChild(profile);
+profile.appendChild(profileLink);
+cardInfo.appendChild(followers);
+cardInfo.appendChild(following);
+cardInfo.appendChild(bio);
 
 return card;
 }
